@@ -18,6 +18,3 @@ npm install body-parser --save
 Run mongod --nojournal
 Run mongod
 Use my_world
-db.Things.insert({name: 'rock'})
-db.Things.insert({name: 'paper'})
-db.Things.insert({name: 'scissors'})

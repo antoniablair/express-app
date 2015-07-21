@@ -1,8 +1,11 @@
 var express = require("express");
+var session = require('express-session');
 var Tab = require("./app/tab");
 var db = require("./app/config/db");
 var Thing = require("./app/models/thing");
 var bodyParser = require("body-parser");
+
+var flash = require('connect-flash');
 
 db.connect()
     .then(function(){
@@ -29,6 +32,16 @@ app.use(function(req, res, next){
     ];
     next(); 
 });
+
+app.use(function(req,res, next){
+	console.log("flash middleware")
+	res.locals({
+		session	: req.session,
+		flash	: req.flash()
+	});
+});
+
+app.use(flash());
 
 
 app.get("/", function(req, res){
@@ -70,8 +83,12 @@ app.post("/things/new", function(req, res){
         });
     }
     else {
-        res.redirect("/error");
+        req.flash('message', 'Your thing needs a name!');
     }
+});
+
+app.use(function(req, res, next) {
+    res.locals.messages = req.flash();
 });
 
 app.post("/things/:id", function(req, res){
