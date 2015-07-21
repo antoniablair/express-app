@@ -37,6 +37,14 @@ app.get("/", function(req, res){
        activePath: "/"
    });
 });
+
+app.get("/error", function(req, res){
+    res.render("error", {
+        activePath: "/error",
+        title: "Something doesn't look right."
+    });
+});
+
 app.get("/people", function(req, res){
    res.render("people", {
        title: "People",
@@ -55,10 +63,15 @@ app.get("/things", function(req, res){
 
 app.post("/things/new", function(req, res){
    var thing = new Thing(req.body); 
-   thing.save()
-    .then(function(){
-       res.redirect("/things"); 
-    });
+   if (req.body.name) {
+    thing.save()
+        .then(function(){
+        res.redirect("/things"); 
+        });
+    }
+    else {
+        res.redirect("/error");
+    }
 });
 
 app.post("/things/:id", function(req, res){
@@ -77,6 +90,7 @@ app.get("/things/new", function(req, res){
     });
     
 });
+
 app.get("/things/:id", function(req, res){
     Thing.findById(req.params.id)
         .then(function(thing){
