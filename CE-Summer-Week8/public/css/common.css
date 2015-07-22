@@ -1,0 +1,20 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+}
+
+/*html, body {*/
+/*	font-family: 'Open Sans', Helvetica, Arial, sans-serif;*/
+/*	font-size: 14px;*/
+/*	color: #585858;*/
+/*}*/
+
+.alert.alert-danger.blank {
+  display: none;
+  margin-top: 10px;
+}
+
+/*.errormsg.on {*/
+/*    display: visible;*/
+/*}*/

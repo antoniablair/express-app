@@ -6,6 +6,7 @@ Express Assignment
 - Add delete button on the "Things" edit page
 - Add active propery to "Thing" which can be set with a checkbox on insert and edit page
 
+cd CE-Summer-Week8
 
 Instructions:
 npm install q --save
